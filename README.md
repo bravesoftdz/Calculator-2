@@ -1,6 +1,6 @@
-# Calculator
+# Calculator 
 
-## An exercise being developed solely for the Delphi track at [Exercism.io](http://exercism.io/).
+#### An exercise being developed solely for the Delphi track at [Exercism.io](http://exercism.io/).
 
 The idea behind this exercise is to present the student with an exercise that requires them to develop a user interface for a basic calculator.  Their solution should allow a user of their application to be able to input numbers via clicking on-screen buttons and performing basic arithmetic operations: `+`, `-`, `*`, and `/`.
 
