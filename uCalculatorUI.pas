@@ -35,9 +35,9 @@ type
     procedure btnSignClick(Sender: TObject);
   private
     { Private declarations }
-    const errMsg = 'Cannot divide by zero';
   public
     { Public declarations }
+    const errMsg: string = 'Cannot divide by zero';
   end;
 
 var
