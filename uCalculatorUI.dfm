@@ -321,6 +321,5 @@ object frmCalculator: TfrmCalculator
     Font.Style = []
     ParentFont = False
     TabOrder = 19
-    OnClick = btnDigitClick
   end
 end
