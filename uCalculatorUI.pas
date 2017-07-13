@@ -35,6 +35,7 @@ type
     procedure btnSignClick(Sender: TObject);
   private
     { Private declarations }
+    const errMsg = 'Cannot divide by zero';
   public
     { Public declarations }
   end;
@@ -50,7 +51,7 @@ procedure TfrmCalculator.btnBackSpaceClick(Sender: TObject);
 var lDisplay: string;
 begin
   lDisplay := edtDisplay.Text;
-  if lDisplay <> '0' then
+  if (lDisplay <> errMsg) and (lDisplay <> '0') then
   begin
     lDisplay := lDisplay.Remove(lDisplay.Length-1);
     if lDisplay.IsEmpty or
@@ -72,7 +73,7 @@ var lDisplay: string;
 begin
   lDisplay := edtDisplay.Text;
   lKeyPressed := '.';
-  if not lDisplay.Contains(lKeyPressed) then
+  if (lDisplay <> errMsg) and not lDisplay.Contains(lKeyPressed) then
   begin
     lDisplay := lDisplay + lKeyPressed;
     edtDisplay.Text := lDisplay;
@@ -85,19 +86,22 @@ var lDisplay: string;
 begin
   lDisplay := edtDisplay.Text;
   lKeyPressed := (Sender as TButton).Tag.ToString;
-  if (lDisplay.StartsWith('0') and (lDisplay.Length = 1)) or
-     (lDisplay.StartsWith('-0') and (lDisplay.Length = 2)) then
-    lDisplay := lKeyPressed
-  else
-    lDisplay := lDisplay + lKeyPressed;
-  edtDisplay.Text := lDisplay;
+  if lDisplay <> errMsg then
+  begin
+    if (lDisplay.StartsWith('0') and (lDisplay.Length = 1)) or
+       (lDisplay.StartsWith('-0') and (lDisplay.Length = 2)) then
+      lDisplay := lKeyPressed
+    else
+      lDisplay := lDisplay + lKeyPressed;
+    edtDisplay.Text := lDisplay;
+  end;
 end;
 
 procedure TfrmCalculator.btnSignClick(Sender: TObject);
 var lDisplay: string;
 begin
   lDisplay := edtDisplay.Text;
-  if lDisplay <> '0'  then
+  if (lDisplay <> errMsg) and (lDisplay <> '0')  then
   begin
     if lDisplay.Contains('-') then
       lDisplay := lDisplay.Remove(0,1)
