@@ -7,7 +7,7 @@ uses
 type
 
   [TestFixture]
-  TCalculatorTests = class(TObject)
+  TCalculatorUITests = class(TObject)
   private
     FCalculatorUI: TfrmCalculator;
   public
@@ -15,36 +15,67 @@ type
     procedure Setup;
     [TearDown]
     procedure TearDown;
-    [Test]
+  published
+//    [Ignore('Comment the "[Ignore]" statement to run the test')]
     procedure DisplayEqualsAllTenDigitsOneTime;
-    [Test]
+
+    [Ignore]
     procedure DisplayEqualsEnteredPositiveWholeValue;
-    [Test]
+
+    [Ignore]
     procedure DisplayEqualsEnteredPositiveFloatValue;
-    [Test]
+
+    [Ignore]
     procedure DisplayEqualsEnteredNegativeWholeValue;
-    [Test]
+
+    [Ignore]
     procedure DisplayEqualsEnteredNegativeFloatValue;
-    [Test]
+
+    [Ignore]
     procedure DisplayCorrectValueAfterClearingOldValue;
-    [Test]
+
+    [Ignore]
     procedure DisplayCorrectValueAfterErasingPartOfValue;
+
+    [Ignore]
+    procedure DisplayOnePlusOneEqualsTwo;
+
+    [Ignore]
+    procedure DisplayTwoTimesSevenEqualsFourteen;
+
+    [Ignore]
+    procedure DisplayTwelveDividedByThreeEqualsFour;
+
+    [Ignore]
+    procedure DisplaySeventyFiveMinusTwelveEqualsSixtyThree;
+
+    [Ignore]
+    procedure PerformTwoStepCalculation;
+
+    [Ignore]
+    procedure PerformThreeStepCalculation;
+
+    [Ignore]
+    procedure DividingByZeroIsBad;
+
+    [Ignore]
+    procedure RecoverFromDivideByZero;
   end;
 
 implementation
 uses VCL.Forms;
 
-procedure TCalculatorTests.Setup;
+procedure TCalculatorUITests.Setup;
 begin
   FCalculatorUI := TfrmCalculator.Create(nil);
 end;
 
-procedure TCalculatorTests.TearDown;
+procedure TCalculatorUITests.TearDown;
 begin
   FCalculatorUI.Free;
 end;
 
-procedure TCalculatorTests.DisplayEqualsAllTenDigitsOneTime;
+procedure TCalculatorUITests.DisplayEqualsAllTenDigitsOneTime;
 begin
   FCalculatorUI.btn1.Click;
   FCalculatorUI.btn2.Click;
@@ -59,7 +90,7 @@ begin
   Assert.AreEqual('1234567890',FCalculatorUI.edtDisplay.Text);
 end;
 
-procedure TCalculatorTests.DisplayCorrectValueAfterClearingOldValue;
+procedure TCalculatorUITests.DisplayCorrectValueAfterClearingOldValue;
 begin
   FCalculatorUI.btn5.Click;
   FCalculatorUI.btn6.Click;
@@ -75,7 +106,7 @@ begin
   Assert.AreEqual('111',FCalculatorUI.edtDisplay.Text);
 end;
 
-procedure TCalculatorTests.DisplayCorrectValueAfterErasingPartOfValue;
+procedure TCalculatorUITests.DisplayCorrectValueAfterErasingPartOfValue;
 begin
   FCalculatorUI.btn5.Click;
   FCalculatorUI.btn6.Click;
@@ -90,7 +121,7 @@ begin
   Assert.AreEqual('-56.395',FCalculatorUI.edtDisplay.Text);
 end;
 
-procedure TCalculatorTests.DisplayEqualsEnteredNegativeFloatValue;
+procedure TCalculatorUITests.DisplayEqualsEnteredNegativeFloatValue;
 begin
   FCalculatorUI.btn5.Click;
   FCalculatorUI.btn6.Click;
@@ -101,7 +132,7 @@ begin
   Assert.AreEqual('-56.35',FCalculatorUI.edtDisplay.Text);
 end;
 
-procedure TCalculatorTests.DisplayEqualsEnteredNegativeWholeValue;
+procedure TCalculatorUITests.DisplayEqualsEnteredNegativeWholeValue;
 begin
   FCalculatorUI.btn5.Click;
   FCalculatorUI.btn6.Click;
@@ -109,7 +140,7 @@ begin
   Assert.AreEqual('-56',FCalculatorUI.edtDisplay.Text);
 end;
 
-procedure TCalculatorTests.DisplayEqualsEnteredPositiveFloatValue;
+procedure TCalculatorUITests.DisplayEqualsEnteredPositiveFloatValue;
 begin
   FCalculatorUI.btn5.Click;
   FCalculatorUI.btn6.Click;
@@ -119,13 +150,105 @@ begin
   Assert.AreEqual('56.35',FCalculatorUI.edtDisplay.Text);
 end;
 
-procedure TCalculatorTests.DisplayEqualsEnteredPositiveWholeValue;
+procedure TCalculatorUITests.DisplayEqualsEnteredPositiveWholeValue;
 begin
   FCalculatorUI.btn5.Click;
   FCalculatorUI.btn6.Click;
   Assert.AreEqual('56',FCalculatorUI.edtDisplay.Text);
 end;
 
+procedure TCalculatorUITests.DisplayOnePlusOneEqualsTwo;
+begin
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btnPlus.Click;
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btnEquals.Click;
+  Assert.AreEqual('2',FCalculatorUI.edtDisplay.Text);
+end;
+
+procedure TCalculatorUITests.DisplaySeventyFiveMinusTwelveEqualsSixtyThree;
+begin
+  FCalculatorUI.btn7.Click;
+  FCalculatorUI.btn5.Click;
+  FCalculatorUI.btnMinus.Click;
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnEquals.Click;
+  Assert.AreEqual('63',FCalculatorUI.edtDisplay.Text);
+end;
+
+procedure TCalculatorUITests.DisplayTwelveDividedByThreeEqualsFour;
+begin
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnDivide.Click;
+  FCalculatorUI.btn3.Click;
+  FCalculatorUI.btnEquals.Click;
+  Assert.AreEqual('4',FCalculatorUI.edtDisplay.Text);
+end;
+
+procedure TCalculatorUITests.DisplayTwoTimesSevenEqualsFourteen;
+begin
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnMultiply.Click;
+  FCalculatorUI.btn7.Click;
+  FCalculatorUI.btnEquals.Click;
+  Assert.AreEqual('14',FCalculatorUI.edtDisplay.Text);
+end;
+
+procedure TCalculatorUITests.DividingByZeroIsBad;
+begin
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnDivide.Click;
+  FCalculatorUI.btn0.Click;
+  FCalculatorUI.btnEquals.Click;
+  Assert.AreEqual(FCalculatorUI.errMsg,FCalculatorUI.edtDisplay.Text);
+end;
+
+procedure TCalculatorUITests.PerformThreeStepCalculation;
+begin
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnMultiply.Click;
+  FCalculatorUI.btn7.Click;
+  FCalculatorUI.btnPlus.Click;
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnMinus.Click;
+  FCalculatorUI.btn6.Click;
+  FCalculatorUI.btnSign.Click;
+  FCalculatorUI.btnEquals.Click;
+  Assert.AreEqual('32',FCalculatorUI.edtDisplay.Text);
+end;
+
+procedure TCalculatorUITests.PerformTwoStepCalculation;
+begin
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnMultiply.Click;
+  FCalculatorUI.btn7.Click;
+  FCalculatorUI.btnPlus.Click;
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnEquals.Click;
+  Assert.AreEqual('26',FCalculatorUI.edtDisplay.Text);
+end;
+
+procedure TCalculatorUITests.RecoverFromDivideByZero;
+begin
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btn2.Click;
+  FCalculatorUI.btnDivide.Click;
+  FCalculatorUI.btn0.Click;
+  FCalculatorUI.btnEquals.Click;
+
+  FCalculatorUI.btnClr.Click;
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btnPlus.Click;
+  FCalculatorUI.btn1.Click;
+  FCalculatorUI.btnEquals.Click;
+  Assert.AreEqual('2',FCalculatorUI.edtDisplay.Text);
+end;
+
 initialization
-  TDUnitX.RegisterTestFixture(TCalculatorTests);
+  TDUnitX.RegisterTestFixture(TCalculatorUITests);
 end.
