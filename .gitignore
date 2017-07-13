@@ -59,3 +59,5 @@ __history/
 *.res
 
 *.dproj
+
+Win32/Debug/dunitx-results\.xml
