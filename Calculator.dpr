@@ -2,7 +2,8 @@ program Calculator;
 
 uses
   Vcl.Forms,
-  uCalculatorUI in 'uCalculatorUI.pas' {frmCalculator};
+  uCalculatorUI in 'uCalculatorUI.pas' {frmCalculator},
+  uCalculator in 'uCalculator.pas';
 
 {$R *.res}
 
