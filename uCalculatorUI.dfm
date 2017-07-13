@@ -4,7 +4,7 @@ object frmCalculator: TfrmCalculator
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Simple Calculator'
-  ClientHeight = 400
+  ClientHeight = 459
   ClientWidth = 282
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -191,7 +191,6 @@ object frmCalculator: TfrmCalculator
     ReadOnly = True
     TabOrder = 11
     Text = '0'
-    ExplicitWidth = 455
   end
   object btnDecimal: TButton
     Left = 144
@@ -308,5 +307,20 @@ object frmCalculator: TfrmCalculator
     ParentFont = False
     TabOrder = 18
     OnClick = btnSignClick
+  end
+  object btnEquals: TButton
+    Left = 144
+    Top = 394
+    Width = 126
+    Height = 60
+    Caption = '&='
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 19
+    OnClick = btnDigitClick
   end
 end

@@ -27,6 +27,7 @@ type
     btnBackSpace: TButton;
     btnDivide: TButton;
     btnSign: TButton;
+    btnEquals: TButton;
     procedure btnDigitClick(Sender: TObject);
     procedure btnDecimalClick(Sender: TObject);
     procedure btnClrClick(Sender: TObject);
