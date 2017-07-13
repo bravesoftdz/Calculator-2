@@ -11,5 +11,3 @@ The test runner will create an instance of the students UI, but will not be visi
 The student will end up with two executables.  One will execute the tests and the other will be the students actual Calculator application.
 
 This repo is related to issue [#91](https://github.com/exercism/delphi/issues/91).
-
-[ver: 0.0.1]   
