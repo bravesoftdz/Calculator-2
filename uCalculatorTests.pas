@@ -86,7 +86,7 @@ type
   {$M-}
 
 implementation
-uses System.Classes, VCL.StdCtrls;
+uses System.Classes, VCL.StdCtrls, VCL.Buttons;
 
 { TBridgeUI }
 
@@ -112,8 +112,12 @@ begin
 end;
 
 function TBridgeUI.DisplayedResult: string;
+const cCalculatorDisplayedValueNotPassed = 'Calculator Display Value Not Passed';
 begin    //result should equal string output of component that displays results
-  result := fCalculatorUI.edtDisplay.Text;
+//  result := cCalculatorDisplayedValueNotPassed; {This is what will be included for dist.}
+  result := fCalculatorUI.edtDisplay.Text; //Student will modify line to be "like" this.
+  if result = cCalculatorDisplayedValueNotPassed then
+    Assert.Fail(result);
 end;
 
 function TBridgeUI.errMsg;
@@ -134,8 +138,22 @@ begin
   if fFormButtons.ContainsKey(aButton) then
   begin
     Component := fCalculatorUI.FindComponent(fFormButtons[aButton]);
-    if assigned(Component) and (Component is TButton) then
+    Assert.IsNotNull(Component, format('Unable to find component %s',[fFormButtons[aButton]]));
+    if Component is TButton then
+    begin
+      if not Assigned((Component as TButton).OnClick) then
+        Assert.Fail(format('OnClick not assigned for ''%s''',[Component.Name]));
       (Component as TButton).Click;
+    end
+    else
+    if Component is TSpeedButton then
+    begin
+      if not Assigned((Component as TSpeedButton).OnClick) then
+        Assert.Fail(format('OnClick not assigned for ''%s''',[Component.Name]));
+      (Component as TSpeedButton).Click;
+    end
+    else
+      Assert.Fail(format('Expecting ''%s'' to be TButton or TSpeedButton',[Component.Name]));
   end;
 end;
 
