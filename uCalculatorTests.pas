@@ -63,6 +63,9 @@ type
     procedure DisplaySeventyFiveMinusTwelveEqualsSixtyThree;
 
     [Ignore]
+    procedure DisplayResultOfFloatingPointDivision;
+
+    [Ignore]
     procedure DisplayTwoTimesSevenEqualsFourteen;
 
     [Ignore]
@@ -265,6 +268,21 @@ begin
     SimClick(1);
     SimClick('=');
     Assert.AreEqual('2', DisplayedResult);
+  end;
+end;
+
+procedure TCalculatorUITests.DisplayResultOfFloatingPointDivision;
+begin
+  FBridgeUI := TBridgeUI.Create;
+  with FBridgeUI do
+  begin
+    SimClick(7);
+    SimClick(5);
+    SimClick('/');
+    SimClick(1);
+    SimClick(2);
+    SimClick('=');
+    Assert.AreEqual('6.25', DisplayedResult);
   end;
 end;
 
