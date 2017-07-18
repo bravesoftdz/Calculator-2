@@ -154,7 +154,9 @@ begin
     end
     else
       Assert.Fail(format('Expecting ''%s'' to be TButton or TSpeedButton',[Component.Name]));
-  end;
+  end
+  else
+    Assert.Fail(format('''%s'' does not exist in the dictionary of controls.',[aButton]));
 end;
 
 destructor TBridgeUI.Destroy;
