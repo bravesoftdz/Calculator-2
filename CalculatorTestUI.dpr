@@ -1,4 +1,4 @@
-program CalculatorTest;
+program CalculatorTestUI;
 
 {$IFNDEF TESTINSIGHT}
 {$APPTYPE CONSOLE}

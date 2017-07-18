@@ -6,7 +6,7 @@
         <Projects Include="Calculator.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="CalculatorTest.dproj">
+        <Projects Include="CalculatorTestUI.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -26,23 +26,23 @@
     <Target Name="Calculator:Make">
         <MSBuild Projects="Calculator.dproj" Targets="Make"/>
     </Target>
-    <Target Name="CalculatorTest">
-        <MSBuild Projects="CalculatorTest.dproj"/>
+    <Target Name="CalculatorTestUI">
+        <MSBuild Projects="CalculatorTestUI.dproj"/>
     </Target>
-    <Target Name="CalculatorTest:Clean">
-        <MSBuild Projects="CalculatorTest.dproj" Targets="Clean"/>
+    <Target Name="CalculatorTestUI:Clean">
+        <MSBuild Projects="CalculatorTestUI.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="CalculatorTest:Make">
-        <MSBuild Projects="CalculatorTest.dproj" Targets="Make"/>
+    <Target Name="CalculatorTestUI:Make">
+        <MSBuild Projects="CalculatorTestUI.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Calculator;CalculatorTest"/>
+        <CallTarget Targets="Calculator;CalculatorTestUI"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Calculator:Clean;CalculatorTest:Clean"/>
+        <CallTarget Targets="Calculator:Clean;CalculatorTestUI:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Calculator:Make;CalculatorTest:Make"/>
+        <CallTarget Targets="Calculator:Make;CalculatorTestUI:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
