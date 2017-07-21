@@ -9,6 +9,9 @@
         <Projects Include="CalculatorTestUI.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="CalculatorTest.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="CalculatorTestUI:Make">
         <MSBuild Projects="CalculatorTestUI.dproj" Targets="Make"/>
     </Target>
+    <Target Name="CalculatorTest">
+        <MSBuild Projects="CalculatorTest.dproj"/>
+    </Target>
+    <Target Name="CalculatorTest:Clean">
+        <MSBuild Projects="CalculatorTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CalculatorTest:Make">
+        <MSBuild Projects="CalculatorTest.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Calculator;CalculatorTestUI"/>
+        <CallTarget Targets="Calculator;CalculatorTestUI;CalculatorTest"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Calculator:Clean;CalculatorTestUI:Clean"/>
+        <CallTarget Targets="Calculator:Clean;CalculatorTestUI:Clean;CalculatorTest:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Calculator:Make;CalculatorTestUI:Make"/>
+        <CallTarget Targets="Calculator:Make;CalculatorTestUI:Make;CalculatorTest:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
