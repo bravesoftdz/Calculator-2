@@ -11,7 +11,8 @@ uses
   DUnitX.Loggers.Console,
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
-  uCalculatorTests in 'uCalculatorTests.pas';
+  uCalculatorTestsUI in 'uCalculatorTestsUI.pas',
+  uCalculatorUI in 'uCalculatorUI.pas' {frmCalculator};
 
 var
   runner : ITestRunner;
