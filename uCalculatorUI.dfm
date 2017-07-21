@@ -13,6 +13,7 @@ object frmCalculator: TfrmCalculator
   Font.Name = 'Arial'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
   object btn1: TButton
